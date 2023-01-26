@@ -257,6 +257,7 @@ public class ProjeEkleTest {
 
         projeEklemeElement.adim8KaydetButton.click();
         projeEklemeElement.tamam2Tikla.click();
+
     }
 
 
