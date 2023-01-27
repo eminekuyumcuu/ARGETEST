@@ -1,19 +1,20 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.bouncycastle.jcajce.provider.asymmetric.rsa.ISOSignatureSpi;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.util.List;
 
 
-public class ProjeEkle {
+public class ProjeEkle{
 
     public ProjeEkle() {
+
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -250,6 +251,7 @@ public class ProjeEkle {
 
     @FindBy (id = "project_stakeholder_save_btn")
     public WebElement paydasKaydetButton;
+
     @FindBy (className = "custom-control-label")
     public WebElement paydasAktifPasifStatus;
 
@@ -303,5 +305,116 @@ public class ProjeEkle {
     public WebElement adim8KaydetButton;
 
 
+    // 9. ADIM DIGER ALANLAR
+
+    @FindBy (id = "sectoralContribution-tab")
+    public WebElement projeninSektoreOlasiEtkileriTabi;
+
+    @FindBy (xpath = "//*[@id=\"sectoralContributionTab\"]/div[1]/div[3]/div[2]")
+    public WebElement projeninSektoreOlasiEtkileriMetinEditoru;
+
+    @FindBy (id = "staffContribution-tab")
+    public WebElement projeninSirketCalisanlarinaOlasiEtkileriTabi;
+
+    @FindBy (xpath = "//*[@id=\"staffContributionTab\"]/div[1]/div[3]/div[2]")
+    public WebElement projeninSirketCalisanlarinaOlasiEtkileriMetinEditoru;
+
+    @FindBy (id = "otherContribution-tab")
+    public WebElement projeninOlasiSosyalEtkileriTabi;
+
+    @FindBy (xpath = "//*[@id=\"otherContributionTab\"]/div[1]/div[3]/div[2]")
+    public WebElement projeninOlasiSosyalEtkileriMetinEditoru;
+
+    @FindBy (xpath = "/html/body/div/div[2]/div/div[2]/div/div/div/div/div[2]/section[9]/form/div/div/div/div[2]/div[3]/div[2]/div[2]/button")
+    public WebElement adim9KaydetButton;
+
+    // 10.ADIM RISKLER VE ALTENATİF COZUMLERI
+
+    @FindBy (id = "technicalRisk-tab")
+    public WebElement risklerVeAlternatifCozumleriTabi;
+
+    @FindBy (xpath = "//*[@id=\"technicalRiskTab\"]/div[1]/div[3]/div[2]")
+    public WebElement risklerVeAlternatifCozumleriMetinEditoru;
+
+    @FindBy (xpath = "/html/body/div/div[2]/div/div[2]/div/div/div/div/div[2]/section[10]/form/div/div/div/div[2]/div[1]/div[2]/div[2]/button")
+    public WebElement adim10KaydetButton;
+
+    // 11.ADIM IS PLANI
+
+    @FindBy (id = "projectBusinessPlan-tab")
+    public WebElement projeIsPaketiTabi;
+
+    @FindBy (xpath = "//*[@id=\"projectBusinessPlanTab\"]/button")
+    public WebElement isPlaniEkleButton;
+
+    //İs Paketi 1.Adim İs Paketi Bilgileri
+    @FindBy (id = "business_package_company_id")
+    public WebElement isPaketiFirmaSelect;
+    public void isPaketiFirmaSecme (int index) { new Select(isPaketiFirmaSelect).selectByIndex(index); }
+
+    @FindBy (id = "business_package_no")
+    public WebElement isPaketiNoInput;
+
+    @FindBy (xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[11]/div[1]/div/div/div[2]/div/form/div/div[2]/section[1]/div/div/div[3]/div/div[1]/select")
+    public WebElement isPaketiFaliyetTuruSelect;
+    public void faliyetTuruSecme (int index) { new Select(isPaketiFaliyetTuruSelect).selectByIndex(index);}
+
+    @FindBy (xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[11]/div[1]/div/div/div[2]/div/form/div/div[2]/section[1]/div/div/div[3]/div/div[1]/div/button[2]")
+    public WebElement faliyetTuruSecimButton;
+
+
+    @FindBy (id = "business_package_name")
+    public WebElement isPaketiAdiInput;
+
+    @FindBy (id = "business_package_leader_id")
+    public WebElement isPaketiLideriSelect;
+    public void isPaketiLideriSecme (int index) { new Select(isPaketiLideriSelect).selectByIndex(index);}
+    @FindBy (id = "start_date")
+    public WebElement isPaketiBaslangicTarihiInput;
+
+    @FindBy (id = "end_date")
+    public WebElement isPaketiBitisTarihiInput;
+
+    @FindBy (className = "custom-control-label")
+    public WebElement isPaketiDurumuStatus;
+
+    //İs Paketi 2.Adim Detay
+
+    @FindBy (xpath = "//*[@id=\"newProjectBusinessPlanFormWizard-p-1\"]/div/div[1]/div/div/div[3]/div[2]")
+    public WebElement isPaketiDetayMetinEditoru;
+
+    @FindBy (xpath = "//*[@id=\"newProjectBusinessPlanFormWizard-p-1\"]/div/div[2]/div/div/div[3]/div[2]")
+    public WebElement isPaketiTamamlanacakGorevlerMetinEditoru;
+
+    //İs Paketi 3.Adim Is Paketi Paydaslari
+
+    @FindBy (xpath = "//*[@id=\"newProjectBusinessPlanFormWizard-p-2\"]/div/div[1]/button")
+    public WebElement isPaketinePaydasEkleButton;
+
+    @FindBy (linkText = "İleri")
+    public WebElement isPaketiIleriButton;
+
+    @FindBy (id = "stakeholder_id")
+    public WebElement paydasAdi;
+
+    public WebElement stakeHolderList;
+
+    public void paydasTest (WebDriver driver) {
+        var bizimpath = "stakeholder_id";
+
+        for(int i = 1; i < 4; i++)
+        {
+            bizimpath += i;
+
+            WebElement test = driver.findElement(By.id(bizimpath));
+
+            new Select(test).selectByIndex(i);
+
+            new Select(test).selectByVisibleText(ConfigReader.getProperty("proje_Yurutucusu") + " (Proje Yürütücüsü)");
+
+            isPaketinePaydasEkleButton.click();
+
+        }
+    }
 
 }
