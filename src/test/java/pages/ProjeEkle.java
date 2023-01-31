@@ -2,6 +2,7 @@ package pages;
 
 import org.bouncycastle.jcajce.provider.asymmetric.rsa.ISOSignatureSpi;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -23,11 +24,6 @@ public class ProjeEkle{
         return null;
     }
 
-    @FindBy(xpath = "/html/body/div[4]/div/div[3]/button[1]")
-    public WebElement tamam4Tikla;
-
-    @FindBy(xpath = "/html/body/div[2]/div/div[3]/button[1]")
-    public WebElement tamam2Tikla;
 
     @FindBy (xpath = "/html/body/div[2]/div/div[3]/button[1]")
     public WebElement popupUyariMesajiOnayla;
@@ -102,7 +98,7 @@ public class ProjeEkle{
 
     @FindBy(xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[1]/form/div/div[3]/div[1]/div/div/div[1]/select")
     public WebElement projeBolgesiSelect;
-    //*[@id="project_partner"]/div/div/div[1]/div/button[2]
+
     @FindBy(xpath = "//*[@id=\"projectGeneralInformationForm\"]/div/div[3]/div[1]/div/div/div[1]/div/button[2]")
     public WebElement bolgeSecimButton;
 
@@ -130,15 +126,12 @@ public class ProjeEkle{
     @FindBy(id = "project_period")
     public WebElement projeDonemiInput;
 
-    @FindBy(id = "end_date")
-    public WebElement bitisTarihiCalender;
-
     public void dagitimTuruSecme(int index) {
         new Select(dagitimSirketiTuruSelect).selectByIndex(index);
     }
 
-    public void dagitimSirketiSecme(int index) {
-        new Select(dagitimSirketiSelect).selectByIndex(index);
+    public void dagitimSirketiSecme(int value) {
+        new Select(dagitimSirketiSelect).selectByValue(Integer.toString(value));
     }
 
     public void projeKategoriSecme(int index) {
@@ -234,6 +227,7 @@ public class ProjeEkle{
 
     @FindBy (id = "stakeholder_id")
     public WebElement paydasTuruSelect;
+
     public void paydasTuruSecme(int index) { new Select(paydasTuruSelect).selectByIndex(index); }
 
     @FindBy (id = "stakeholder_title")
@@ -241,6 +235,7 @@ public class ProjeEkle{
 
     @FindBy (xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[6]/div/div/div/div[2]/form/div[2]/div/div[1]/select")
     public WebElement paydasProjeOrtakSelect;
+
     public void paydasProjeOrtakSecme(int index) { new Select(paydasProjeOrtakSelect).selectByIndex(index); }
 
     @FindBy (xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[6]/div/div/div/div[2]/form/div[2]/div/div[1]/div/button[2]")
@@ -357,18 +352,20 @@ public class ProjeEkle{
 
     @FindBy (xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[11]/div[1]/div/div/div[2]/div/form/div/div[2]/section[1]/div/div/div[3]/div/div[1]/select")
     public WebElement isPaketiFaliyetTuruSelect;
+
     public void faliyetTuruSecme (int index) { new Select(isPaketiFaliyetTuruSelect).selectByIndex(index);}
 
     @FindBy (xpath = "/html/body/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/section[11]/div[1]/div/div/div[2]/div/form/div/div[2]/section[1]/div/div/div[3]/div/div[1]/div/button[2]")
     public WebElement faliyetTuruSecimButton;
-
 
     @FindBy (id = "business_package_name")
     public WebElement isPaketiAdiInput;
 
     @FindBy (id = "business_package_leader_id")
     public WebElement isPaketiLideriSelect;
+
     public void isPaketiLideriSecme (int index) { new Select(isPaketiLideriSelect).selectByIndex(index);}
+
     @FindBy (id = "start_date")
     public WebElement isPaketiBaslangicTarihiInput;
 
@@ -394,26 +391,121 @@ public class ProjeEkle{
     @FindBy (linkText = "İleri")
     public WebElement isPaketiIleriButton;
 
-    @FindBy (id = "stakeholder_id")
-    public WebElement paydasAdi;
+    @FindBy (linkText = "Kaydet")
+    public WebElement isPaketiIleriKaydetButton;
 
-    public WebElement stakeHolderList;
+    @FindBy(xpath = "//*[contains(@id,'stakeholder_id') and contains(@name,'stakeholder_id')]")
+    public List<WebElement> stakeHolderList;
 
-    public void paydasTest (WebDriver driver) {
-        var bizimpath = "stakeholder_id";
+    @FindBy(xpath = "//*[contains(@id,'output') and contains(@name,'output') and contains(@placeholder,'Çıktı')]")
+    public List<WebElement> outputList;
 
-        for(int i = 1; i < 4; i++)
-        {
-            bizimpath += i;
+    @FindBy(xpath = "//*[contains(@id,'output_') and contains(@name,'output_')]")
+    public List<WebElement> outputListDate;
 
-            WebElement test = driver.findElement(By.id(bizimpath));
+    @FindBy(xpath = "//*[@id=\"newProjectBusinessPlanFormWizard-p-3\"]/div/div[1]/button")
+    public WebElement ciktiEkleButton;
 
-            new Select(test).selectByIndex(i);
+    @FindBy(xpath = "//*[contains(@class,\"swal2-confirm\")]")
+    public WebElement HERYERDEGECERLITAMAMBUTONU;
 
-            new Select(test).selectByVisibleText(ConfigReader.getProperty("proje_Yurutucusu") + " (Proje Yürütücüsü)");
+    // 12.ADIM BUTCE VE FINANSMAN KAYNAKLAR
 
-            isPaketinePaydasEkleButton.click();
+    @FindBy (xpath = "//*[@id=\"projectBudgetTab\"]/div/button")
+    public WebElement butceEkleButton;
 
+    @FindBy (id = "spending_company_id")
+    public WebElement butceFirmaSelect;
+
+    public void butceFirmaSecme (int index) { new Select(butceFirmaSelect).selectByIndex(index);}
+
+
+    @FindBy (id = "spending_category_id")
+    public WebElement butceTuruSelect;
+
+    public void butceTuruSecme (int index) { new Select(butceTuruSelect).selectByIndex(index);}
+
+
+    @FindBy (id = "business_package_id")
+    public WebElement butceIsPaketiSelect;
+
+    public void butceIsPaketiSecme (int index) { new Select(butceIsPaketiSelect).selectByIndex(index);}
+
+
+    @FindBy (id = "business_package_stakeholder_id")
+    public WebElement butceIsPaketiPaydasSelect;
+
+    public void butceIsPaketiPaydasSecme (int index) { new Select(butceIsPaketiPaydasSelect).selectByIndex(index);}
+
+
+    @FindBy (id = "personel_date")
+    public WebElement butceAdamAyInput;
+
+    @FindBy (id = "amount")
+    public WebElement butceTutarInput;
+
+    @FindBy (className = "custom-control-label")
+    public  WebElement butceAktifPasifStatus;
+
+    @FindBy (id = "project_spending_save_btn")
+    public WebElement butceKaydetButton;
+
+
+    @FindBy (xpath ="//*[@id=\"projectAttachmentFilesForm\"]/div/div/div/button")
+    public WebElement dosyaEkleButton;
+
+    @FindBy (id = "files_type_id")
+    public WebElement dosyaTuru;
+
+    @FindBy (id = "files_content")
+    public WebElement dosyaAciklamasi;
+
+    @FindBy (id ="file_url")
+    public WebElement dosyaSecme;
+
+    @FindBy (className = "custom-control-label")
+    public WebElement dosyaAktifPasif;
+
+    @FindBy  (xpath = "//*[@id=\"project_attachment_files_save_btn\"]")
+    public WebElement dosyaEklemeKaydetButton;
+
+
+    public void paydasSectir() throws InterruptedException {
+        int ii = 0;
+        for (WebElement element : stakeHolderList) {
+            if(ii == 0)
+            {
+                new Select(element).selectByVisibleText(ConfigReader.getProperty("proje_Yurutucusu") + " (Proje Yürütücüsü)");
+            }
+            if(ii == 1)
+            {
+                new Select(element).selectByVisibleText(ConfigReader.getProperty("danisman") + " (Danışman)");
+            }
+            if(ii > 1)
+            {
+                new Select(element).selectByIndex(ii);
+            }
+
+            ii++;
+            bekle();
+        }
+    }
+
+    public void ciktiSectir() throws InterruptedException {
+        int i = 1;
+        for (WebElement element : outputList) {
+            element.sendKeys(Integer.toString(i) + ". Çıktı");
+            i++;
+            bekle();
+        }
+    }
+
+    public void ciktiTarihSectir() throws InterruptedException {
+        int i = 1;
+        for (WebElement element : outputListDate) {
+            element.sendKeys(Integer.toString(i));
+            i++;
+            bekle();
         }
     }
 

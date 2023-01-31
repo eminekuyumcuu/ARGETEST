@@ -3,6 +3,7 @@ package tests;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 import pages.KullaniciGirisi;
 import pages.ProjeEkle;
@@ -33,7 +34,7 @@ public class ProjeEkleTest {
         projeEklemeElement.dagitimTuruSecme(1);
         projeEklemeElement.bekle();
 
-        projeEklemeElement.dagitimSirketiSecme(1);
+        projeEklemeElement.dagitimSirketiSecme(80);
         projeEklemeElement.bekle();
 
         projeEklemeElement.projeAdiInput.sendKeys(ConfigReader.getProperty("proje_adi"));
@@ -72,228 +73,229 @@ public class ProjeEkleTest {
         projeEklemeElement.projeDonemiInput.sendKeys(Keys.ARROW_RIGHT);
         projeEklemeElement.projeDonemiInput.sendKeys(ConfigReader.getProperty("proje_donemi_Yil"));
         projeEklemeElement.adim1KaydetButton.click();
-        projeEklemeElement.tamam4Tikla.click();
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
 
         System.out.println("1.Adim Proje Genel Bilgileri Dolduruldu.");
 
         // 2. ADIM PROJE AMACI
 
-//        projeEklemeElement.projeOzetiMetinEditoru.sendKeys(ConfigReader.getProperty("proje_ozeti"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeAmaciTabi.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeAmaciMetinEditoru.sendKeys(ConfigReader.getProperty("proje_amaci"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.adim2KaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//
-//        System.out.println("2.Adim Proje Amaci Dolduruldu.");
-//
-//        // 3. ADIM PROJEDEN BEKLENEN SONUÇ
-//
-//        projeEklemeElement.projedenBeklenenSonucMetinEditoru.sendKeys(ConfigReader.getProperty("projeden_beklenen_sonuc"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.adim3KaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//        System.out.println("3.Adim Projeden Beklenen Sonuc Dolduruldu.");
-//
-//        // 4. ADIM PROJEDEN ETKİLENENLER
-//
-//        projeEklemeElement.projedenEtkilenenlerEkleButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.etkilenenKurumInput.sendKeys(ConfigReader.getProperty("etkilenen_kurum"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.etkilenenAktifPasifStatus.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.etkilenenKaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//        System.out.println("4.Adim Projeden Etkilenenler Dolduruldu.");
-//
-//        // 5.ADIM PROJENIN OZGUNLUGU
-//
-//        projeEklemeElement.projeninOzgunluguAdimi.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninOzgunluguMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_ozgunlugu"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninBeklenenKatmaDegeriTabi.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninBeklenenKatmaDegeriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_beklenen_katma_degeri"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.adim5KaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//        System.out.println("5.Adim Projenin Ozgunlugu Dolduruldu.");
-//
-//        // 6. ADIM PAYDASLAR VE TEKNIK YETERLILIK
-//
-//        projeEklemeElement.paydasEkleButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasTuruSecme(1); //Proje Yurutucusu
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeYurutucusuAdiInput.sendKeys(ConfigReader.getProperty("proje_Yurutucusu"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasAktifPasifStatus.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasKaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//
-//
-//
-//        projeEklemeElement.paydasEkleButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasTuruSecme(2); //Proje Ortaklari
-//
-//        for (int paydasortak =0; paydasortak < 21; paydasortak++)
-//        {
-//            projeEklemeElement.paydasProjeOrtakSecme(paydasortak);
-//        }
-//        projeEklemeElement.paydasOrtakSecmeButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasAktifPasifStatus.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasKaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasEkleButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasTuruSecme(3); //Danisman
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.danismanAdiInput.sendKeys(ConfigReader.getProperty("danisman"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasAktifPasifStatus.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.paydasKaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//        System.out.println("5.Adim Paydaslar ve Teknik Yeterlilik Dolduruldu.");
-//
-//
-//        // 7. ADIM PROJE ALANI
-//
-//        projeEklemeElement.projeAlaniAdimi.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.sektorSecimIletisimTeknolojisiStatus.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.popupUyariMesajiOnayla.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//        System.out.println("7.Adim Proje Alani Dolduruldu.");
-//
-//
-//        // 8. ADIM PROJE KAPSAMİ
-//
-//        projeEklemeElement.projeKapsamiAdimi.click();
-//
-//        for (int sayi = 1; sayi < 7; sayi++)
-//        {
-//            projeEklemeElement.bekle();
-//            projeEklemeElement.kelimeEkleButton.click();
-//            projeEklemeElement.kelimeAdiInput.sendKeys(ConfigReader.getProperty("anahtar_kelime") + " " + sayi);
-//            projeEklemeElement.bekle();
-//            projeEklemeElement.kelimeKaydetButton.click();
-//            projeEklemeElement.tamam2Tikla.click();
-//        }
-//
-//        projeEklemeElement.bekle();
-//        projeEklemeElement.bekle();
-//        projeEklemeElement.projeKapsamiTabi.click();
-//        projeEklemeElement.projeKapsamiMetinEditoru.sendKeys(ConfigReader.getProperty("proje_kapsami"));
-//
-//        projeEklemeElement.faydalanilanKaynaklarTabi.click();
-//        projeEklemeElement.faydalanilanKaynaklarMetinEditoru.sendKeys(ConfigReader.getProperty("faydalanilan_kaynaklar"));
-//
-//        projeEklemeElement.projeTeknikAciklamasiTabi.click();
-//        projeEklemeElement.projeTeknikAciklamasiMetinEditoru.sendKeys(ConfigReader.getProperty("proje_teknik_aciklamasi"));
-//
-//        projeEklemeElement.projedenBeklenenVerilerTabi.click();
-//        projeEklemeElement.projedenBeklenenVerilerMetinEditoru.sendKeys(ConfigReader.getProperty("projeden_beklenen_veriler"));
-//
-//        projeEklemeElement.adim8KaydetButton.click();
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//
-//
-//        // 9. ADIM DIGER ALANLAR
-//        projeEklemeElement.projeninSektoreOlasiEtkileriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_sektore_olasi_etkileri"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninSirketCalisanlarinaOlasiEtkileriTabi.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninSirketCalisanlarinaOlasiEtkileriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_sirket_calisanlarina_olasi_etkileri"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninOlasiSosyalEtkileriTabi.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.projeninOlasiSosyalEtkileriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_olasi_sosyal_etkileri"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.adim9KaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
-//        // 10.ADIM RISKLER VE ALTENATİF COZUMLERI
-//
-//        projeEklemeElement.risklerVeAlternatifCozumleriMetinEditoru.sendKeys(ConfigReader.getProperty("riskler_ve_alternatif_cozumleri"));
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.adim10KaydetButton.click();
-//        projeEklemeElement.bekle();
-//
-//        projeEklemeElement.tamam2Tikla.click();
-//        projeEklemeElement.bekle();
+        projeEklemeElement.projeOzetiMetinEditoru.sendKeys(ConfigReader.getProperty("proje_ozeti"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeAmaciTabi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeAmaciMetinEditoru.sendKeys(ConfigReader.getProperty("proje_amaci"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.adim2KaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+
+        System.out.println("2.Adim Proje Amaci Dolduruldu.");
+
+        // 3. ADIM PROJEDEN BEKLENEN SONUÇ
+
+        projeEklemeElement.projedenBeklenenSonucMetinEditoru.sendKeys(ConfigReader.getProperty("projeden_beklenen_sonuc"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.adim3KaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        System.out.println("3.Adim Projeden Beklenen Sonuc Dolduruldu.");
+
+        // 4. ADIM PROJEDEN ETKİLENENLER
+
+        projeEklemeElement.projedenEtkilenenlerEkleButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.etkilenenKurumInput.sendKeys(ConfigReader.getProperty("etkilenen_kurum"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.etkilenenAktifPasifStatus.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.etkilenenKaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        System.out.println("4.Adim Projeden Etkilenenler Dolduruldu.");
+
+        // 5.ADIM PROJENIN OZGUNLUGU
+
+        projeEklemeElement.projeninOzgunluguAdimi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninOzgunluguMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_ozgunlugu"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninBeklenenKatmaDegeriTabi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninBeklenenKatmaDegeriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_beklenen_katma_degeri"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.adim5KaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        System.out.println("5.Adim Projenin Ozgunlugu Dolduruldu.");
+
+        // 6. ADIM PAYDASLAR VE TEKNIK YETERLILIK
+        projeEklemeElement.bekle();
+        projeEklemeElement.paydaslarVeTeknikYeterlilikAdimi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasEkleButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasTuruSecme(1); //Proje Yurutucusu
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeYurutucusuAdiInput.sendKeys(ConfigReader.getProperty("proje_Yurutucusu"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasAktifPasifStatus.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasKaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasEkleButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasTuruSecme(2); //Proje Ortaklari
+
+        for (int paydasortak =0; paydasortak < 21; paydasortak++)
+        {
+            projeEklemeElement.paydasProjeOrtakSecme(paydasortak);
+        }
+        projeEklemeElement.paydasOrtakSecmeButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasAktifPasifStatus.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasKaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasEkleButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasTuruSecme(3); //Danisman
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.danismanAdiInput.sendKeys(ConfigReader.getProperty("danisman"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasAktifPasifStatus.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.paydasKaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        System.out.println("5.Adim Paydaslar ve Teknik Yeterlilik Dolduruldu.");
+
+
+        // 7. ADIM PROJE ALANI
+
+        projeEklemeElement.projeAlaniAdimi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.sektorSecimIletisimTeknolojisiStatus.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.popupUyariMesajiOnayla.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        System.out.println("7.Adim Proje Alani Dolduruldu.");
+
+
+        // 8. ADIM PROJE KAPSAMİ
+
+        projeEklemeElement.projeKapsamiAdimi.click();
+
+        for (int sayi = 1; sayi < 5; sayi++)
+        {
+            projeEklemeElement.bekle();
+            projeEklemeElement.kelimeEkleButton.click();
+            projeEklemeElement.kelimeAdiInput.sendKeys(ConfigReader.getProperty("anahtar_kelime") + " " + sayi);
+            projeEklemeElement.bekle();
+            projeEklemeElement.kelimeKaydetButton.click();
+            projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        }
+
+        projeEklemeElement.bekle();
+        projeEklemeElement.bekle();
+        projeEklemeElement.projeKapsamiTabi.click();
+        projeEklemeElement.projeKapsamiMetinEditoru.sendKeys(ConfigReader.getProperty("proje_kapsami"));
+
+        projeEklemeElement.faydalanilanKaynaklarTabi.click();
+        projeEklemeElement.faydalanilanKaynaklarMetinEditoru.sendKeys(ConfigReader.getProperty("faydalanilan_kaynaklar"));
+
+        projeEklemeElement.projeTeknikAciklamasiTabi.click();
+        projeEklemeElement.projeTeknikAciklamasiMetinEditoru.sendKeys(ConfigReader.getProperty("proje_teknik_aciklamasi"));
+
+        projeEklemeElement.projedenBeklenenVerilerTabi.click();
+        projeEklemeElement.projedenBeklenenVerilerMetinEditoru.sendKeys(ConfigReader.getProperty("projeden_beklenen_veriler"));
+
+        projeEklemeElement.adim8KaydetButton.click();
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+
+        // 9. ADIM DIGER ALANLAR
+        projeEklemeElement.projeninSektoreOlasiEtkileriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_sektore_olasi_etkileri"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninSirketCalisanlarinaOlasiEtkileriTabi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninSirketCalisanlarinaOlasiEtkileriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_sirket_calisanlarina_olasi_etkileri"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninOlasiSosyalEtkileriTabi.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.projeninOlasiSosyalEtkileriMetinEditoru.sendKeys(ConfigReader.getProperty("projenin_olasi_sosyal_etkileri"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.adim9KaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
+
+        // 10.ADIM RISKLER VE ALTENATİF COZUMLERI
+
+        projeEklemeElement.risklerVeAlternatifCozumleriMetinEditoru.sendKeys(ConfigReader.getProperty("riskler_ve_alternatif_cozumleri"));
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.adim10KaydetButton.click();
+        projeEklemeElement.bekle();
+
+        projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        projeEklemeElement.bekle();
 
         // 11.ADIM IS PLANI
         projeEklemeElement.bekle();
@@ -303,6 +305,8 @@ public class ProjeEkleTest {
 
         for(int i = 1; i < 3; i++)
         {
+            projeEklemeElement.bekle();
+
             projeEklemeElement.isPlaniEkleButton.click();
             projeEklemeElement.bekle();
 
@@ -328,14 +332,16 @@ public class ProjeEkleTest {
             if(kaldigimAy == 0)
             {
                 projeEklemeElement.isPaketiBaslangicTarihiInput.sendKeys(Integer.toString(i));
+                projeEklemeElement.isPaketiBitisTarihiInput.sendKeys(Integer.toString(isPaketiAyGetir(i)));
             }else{
                 projeEklemeElement.isPaketiBaslangicTarihiInput.sendKeys(Integer.toString(kaldigimAy));
+                projeEklemeElement.isPaketiBitisTarihiInput.sendKeys(Integer.toString(isPaketiAyGetir(kaldigimAy)));
             }
+
             kaldigimAy = isPaketiAyGetir(i);
+
             projeEklemeElement.bekle();
 
-
-            projeEklemeElement.isPaketiBitisTarihiInput.sendKeys(Integer.toString(isPaketiAyGetir(kaldigimAy)));
             projeEklemeElement.bekle();
 
             projeEklemeElement.isPaketiDurumuStatus.click();
@@ -358,8 +364,111 @@ public class ProjeEkleTest {
             {
                 projeEklemeElement.isPaketinePaydasEkleButton.click();
             }
+
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.paydasSectir();
+
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.isPaketiIleriButton.click();
+
+            for (int paydasekle = 1; paydasekle< 4; paydasekle++ )
+            {
+                projeEklemeElement.ciktiEkleButton.click();
+            }
+
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.ciktiSectir();
+
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.ciktiTarihSectir();
+
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.isPaketiIleriKaydetButton.click();
+
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+
+            projeEklemeElement.bekle();
         }
+
+
+        // 12.ADIM BUTCE VE FINANSMAN KAYNAKLAR
+
+
+        for (int butceindexler = 1; butceindexler < 4; butceindexler++) {
+            projeEklemeElement.butceVeFinansmanKaynaklarAdimi.click();
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceEkleButton.click();
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceFirmaSecme(butceindexler);
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceTuruSecme(butceindexler);
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceIsPaketiSecme(butceindexler);
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceIsPaketiPaydasSecme(butceindexler); //Proje Yürütücüsü
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceAdamAyInput.sendKeys("1");
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceTutarInput.sendKeys("100000");
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceAktifPasifStatus.click();
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.butceKaydetButton.click();
+            projeEklemeElement.bekle();
+
+            projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+        }
+
+            projeEklemeElement.projeHareketKayitlariAdimi.click();
+            projeEklemeElement.bekle();
+            projeEklemeElement.yetkiliFirmalarAdimi.click();
+            projeEklemeElement.bekle();
+            projeEklemeElement.projeEkDosyalarAdimi.click();
+
+            WebElement dosyaTuruSecimi = projeEklemeElement.dosyaTuru;
+            new Select(dosyaTuruSecimi).selectByValue("2"); //Proje Algoritmasi
+
+            projeEklemeElement.dosyaAciklamasi.sendKeys(ConfigReader.getProperty("dosya_aciklamasi"));
+
+            WebElement dosyasecimi = projeEklemeElement.dosyaSecme;
+            dosyasecimi.sendKeys("C:/Users/emine.kuyumcu/Desktop/ARGETEST/deneme.pdf");
+
+            projeEklemeElement.dosyaAktifPasif.click();
+
+            projeEklemeElement.dosyaEklemeKaydetButton.click();
+            projeEklemeElement.HERYERDEGECERLITAMAMBUTONU.click();
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public int isPaketiAyGetir(int sayi)
     {
